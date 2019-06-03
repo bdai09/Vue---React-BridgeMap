@@ -28,15 +28,25 @@
 npm install --save he
 
 6. build components:
+
  BridegeMenu.vue---entire menu
+
  MenuItem.vue--single item in menu
+
 7. bridge-info container:
+
 BridgeInfo.vue---show location & info
+
 8. map: using Leaflet js library, npm install --save leaflet
+
 To use Leaflet:
+
 include the Leaflet CSS file
+
 include the Leaflet JS file
+
 create an element in your page (e.g., <div>) to hold the map
+
 write some code using the Leaflet API to draw a map
 
 simple-map.js
