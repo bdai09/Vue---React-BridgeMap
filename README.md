@@ -6,13 +6,21 @@
 4. project layout:
 
 /bridge-vue
+
     /public
+
         favicon.ico      <-- our project's icon
+
         index.html       <-- main html file
+
     /src
+
         assets/          <-- any static assets we need (e.g., images)
+
         components/      <-- our custom Vue components go here
+
         App.vue          <-- our application's main component
+        
         main.js          <-- our project's entry point (main JavaScript file)
 
 5. bridges.js---load bridge data from REST API with fetch()
