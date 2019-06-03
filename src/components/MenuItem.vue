@@ -1,14 +1,14 @@
 
 <template>
   <div 
-  v-bind:title="bridge.name"
+  :title="bridge.name"
   @click="handleClick"
   v-html="bridge.nameEncoded">
   </div>
 </template>
 
 <style scoped>
-div{
+div {
   background-color: #0b3954;
   color: #b5bec6;
   cursor: pointer;
@@ -21,16 +21,19 @@ div{
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-div: hover{
-     color: #C7DBE6;
+
+div:hover {
+  color: #C7DBE6;
   border-left: 3px solid #bfb1c1;
 }
 </style>
 
-//exports an Object that defines a name, and accepts a prop from its parent, in this case a bridge Object.
+
+/*exports an Object that defines a name, and accepts a prop from its parent, in this case a bridge Object.
 //When the user clicks on the DOM element, we want to emit a custom event named 'click'
 // However, our MenuItem's click event will be a higher-level than a DOM click event,
-// in that we'll also include the bridge that this MenuItem represents.
+// in that we'll also include the bridge that this MenuItem represents.**/
+
 <script>
 export default{
     name:'MenuItem',

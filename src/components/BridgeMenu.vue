@@ -1,58 +1,76 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <div id="menu">
+    <div v-if="status.errored">
+    <p>Error: unable to load bridge</p>
+    </div>
+    <div v-else>
+      <div v-if="status.loading">Loading...</div>
+      <div v-else>
+         <!-- use our MenuItem component, using HTML style kebab-case -->
+         <!--:bridge="bridge", which will bind (v-bind) a 
+         given bridge Object to this <menu-item>, passing it along as a prop. -->
+        <menu-item
+          v-for="bridge of bridges"
+          :key="bridge.id"
+          :bridge="bridge"
+          @click="bridgeSelected"
+          />
+          <!--@click="bridgeSelected", which will register event listener for
+         click event emitted by a MenuItem component. This is the other side of
+          the event (the consumer) that we defined in MenuItem.vue.-->
+      </div>
+      </div>
+    </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+#menu {
+  height: 100%;
 }
 </style>
+
+<script>
+import MenuItem from './MenuItem.vue';
+import getBridgeData from '../bridges.js';
+
+export default {
+  name: 'BridgeMenu',
+  data:function(){
+    return{
+      status:{
+        loading:false,
+        errored:false
+      },
+      bridges:null
+    }
+  },
+  components:{
+    MenuItem
+  },
+  created: function(){
+    this.loadBridges();
+  },
+  methods:{
+    loadBridges:function(){
+      this.status.loading=true;
+
+      //use bridge.js to talk with REST API
+      getBridgeData()
+      .then(bridges=>{
+        this.status.loading=false;
+        this.bridges=bridges;
+      })
+      .catch(err=>{
+        console.error('Cannot load bridge data',err.message);
+        this.status.errored=true;
+      });
+    },
+    bridgeSelected:function(bridge){
+      // When the user clicks a menu item, emit a `change`
+      // event for the menu control, along with bridge value
+      this.$emit('change', bridge);
+    }
+  }
+ 
+}
+</script>

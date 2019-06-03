@@ -1,22 +1,34 @@
 <template>
   <div id="app">
     <nav id="menu">
-    menu goes here....
+    <bridge-menu @change="bridgeSelected" />
     </nav>
     <div id="bridge-info">
-    Bridge info goes here....
+    <p v-if="bridge" v-html="bridge.nameEncoded"></p>
+    <p v-else>Bridge info goes here...</p>
     </div>
   </div>
 </template>
 
 <script>
+import BridgeMenu from './components/BridgeMenu.vue';
 
 export default {
   name: 'App',
   data: function(){
-    return{};
+    return{
+      bridge:null
+    };
+  },
+  components:{
+    BridgeMenu
+  },
+  methods:{
+    bridgeSelected:function(bridge){
+      this.bridge=bridge;
+    }
   }
-}
+};
 </script>
 
 <style>
