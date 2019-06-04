@@ -35,7 +35,7 @@
 
 7. bridge-info container:
 
-   BridgeInfo.vue---show location & info
+   BridgeInfo.vue---show location & info map
 
 8. map: using Leaflet js library, npm install --save leaflet
 
@@ -45,10 +45,12 @@
 
    include the Leaflet JS file
 
-   create an element in your page to hold the map
+   create an element in your page to hold the map ---simple-map.js ---create class for users to draw map
 
-   write some code using the Leaflet API to draw a map
+   write some code using the Leaflet API to draw a map---LeafletMap.vue
 
-   simple-map.js ---create class for users to draw map
+   use LeafletMap.vue in Bridge
 
-   LeafletMap.vue
+   
+
+   
