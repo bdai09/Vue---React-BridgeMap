@@ -2,7 +2,7 @@
 1. Data: https://api.myjson.com/bins/17fpo0
 
 2. create a new Vue project: vue create bridge-vue
-3. to run web server: npm run server
+3. to run web server: npm run serve
 4. project layout:
 
 /bridge-vue
