@@ -25,30 +25,30 @@
 
 5. bridges.js---load bridge data from REST API with fetch()
 
-npm install --save he
+   npm install --save he
 
 6. build components:
 
- BridegeMenu.vue---entire menu
+   BridegeMenu.vue---entire menu
 
- MenuItem.vue--single item in menu
+   MenuItem.vue--single item in menu
 
 7. bridge-info container:
 
-BridgeInfo.vue---show location & info
+   BridgeInfo.vue---show location & info
 
 8. map: using Leaflet js library, npm install --save leaflet
 
-To use Leaflet:
+   To use Leaflet:
 
-include the Leaflet CSS file
+   include the Leaflet CSS file
 
-include the Leaflet JS file
+   include the Leaflet JS file
 
-create an element in your page (e.g., <div>) to hold the map
+   create an element in your page to hold the map
 
-write some code using the Leaflet API to draw a map
+   write some code using the Leaflet API to draw a map
 
-simple-map.js
+   simple-map.js ---create class for users to draw map
 
-LeafletMap.vue
+   LeafletMap.vue
