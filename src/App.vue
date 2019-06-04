@@ -4,14 +4,15 @@
     <bridge-menu @change="bridgeSelected" />
     </nav>
     <div id="bridge-info">
-    <p v-if="bridge" v-html="bridge.nameEncoded"></p>
-    <p v-else>Bridge info goes here...</p>
+    <bridge-info :bridge="bridge"/>
     </div>
   </div>
 </template>
 
 <script>
 import BridgeMenu from './components/BridgeMenu.vue';
+import BridgeInfo from './components/BridgeInfo.vue';
+
 
 export default {
   name: 'App',
@@ -21,7 +22,8 @@ export default {
     };
   },
   components:{
-    BridgeMenu
+    BridgeMenu,
+    BridgeInfo
   },
   methods:{
     bridgeSelected:function(bridge){

@@ -3,17 +3,15 @@
   <div v-if="bridge" id="info-panel">
    <h2 v-html="bridge.nameEncoded"></h2>
 
-   <div class="bridge=stats">
+   <div class="bridge-stats">
      <div>Year: {{bridge.year}} ({{age}} years)</div>
      <div> Width: {{bridge.width}}m</div>
      <div>Length: {{bridge.length}}m</div>
      </div>
-</div>
-<!-- TODO
-    <leaflet-map id="leaflet-map" :location="bridge" />
-    -->
-    <div id="leaflet-map">Map will goe here...</div>
   </div>
+
+    <leaflet-map id="leaflet-map" :location="bridge" />
+ </div>
 </template>
 
 <style scoped>
@@ -56,8 +54,11 @@
 </style>
 
 <script>
+import LeafletMap from './LeafletMap.vue';
+
 export default {
     name: 'BridgeInfo',
+    components: {LeafletMap},
     props:['bridge'],
     computed:{
         age:function(){
